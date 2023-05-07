@@ -1,0 +1,65 @@
+// ==UserScript==
+// @name           Sik-Userv1
+// @name:dc        ! User†`#5649
+// @name:tr        Sik-v1A
+// @name:az        Sən sikdirirsən
+// @name:rus       ты трахаешься
+// @name:af        jy is fokken
+// @description    none
+// @version        1.1
+// @author         User
+// @match          *://gartic.io/*
+// @icon           https://www.google.com/s2/favicons?sz=64&domain=https://gartic.io
+// @grant          GM_setValue
+// @grant          GM_getValue
+// @grant          GM_addValueChangeListener
+// @grant          GM_addStyle
+// ==/UserScript==
+let m_s,a_i,m_a,m_z,m_b;
+
+const f=x=>document.querySelector(x),
+      sendMessage=(inputSelector,mesaj)=>{a_i=document.querySelector(inputSelector);m_a=a_i.value;a_i.value=mesaj;m_z=new Event("input",{bubbles:!0});m_z.simulated=!0;m_b=new Event("submit",{bubbles:!0});m_b.simulated=!0;m_s=a_i._valueTracker;m_s&&m_s.setValue(m_a);a_i.dispatchEvent(m_z);a_i.form.dispatchEvent(m_b);},
+      rand=x=>Math.floor(Math.random()*100)+1,
+      GM_onMessage=(label,cb)=>GM_addValueChangeListener(label,(_,__,data)=>cb(...data)),
+      GM_sendMessage=(label,...data)=>GM_setValue(label,data);
+      GM_onMessage('sik',(atılacak,_)=>{atılacak&&document.querySelectorAll(".nick").forEach(nick=>{nick.innerText===atılacak&&(nick.click(),f(".ic-votekick")?.click())})});
+      GM_onMessage('msg',(i,w,_)=>{sendMessage(i,w)})
+
+setInterval(() => {
+          const answer = document.createElement("button");
+          answer.className = "btBlueBig ic-answer";
+          answer.style = "width:30px;height:30px;z-index:99";
+          answer.addEventListener("mousedown", () => {
+                    GM_sendMessage('msg','input[name=answer]',document.querySelector("#answer input").value, rand());
+          });
+          const chat = document.createElement("button");
+          chat.className = "btBlueBig ic-chat";
+          chat.style = "width:30px;height:30px;z-index:99";
+          chat.addEventListener("mousedown", () => {
+                    GM_sendMessage('msg','input[name=chat]',document.querySelector("#chat input").value, rand());
+          });
+          !f(".ic-answer")?document.querySelector("#chat input")?document.querySelector(".textGame")?.appendChild(answer):0:0;
+          !f(".ic-chat")?document.querySelector("#chat input")?document.querySelector("#chat form div")?.appendChild(chat):0:0;
+          const prof = f(".content.profile");
+          if(!prof) return
+          const sik = document.createElement("button");
+          sik.className = "btBlueBig ic-sik";
+          sik.innerHTML = '<svg width="30" height="30" fill="currentColor" viewBox="0 0 22 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.747 21.75H7.5a.75.75 0 0 1-.683-1.06l3.021-6.667-4.537-.101-1.655 2.005c-.315.396-.567.573-1.209.573h-.84a.828.828 0 0 1-.689-.33c-.112-.151-.221-.406-.114-.77l.929-3.328a.851.851 0 0 1 .024-.074v-.007a.69.69 0 0 1-.024-.075l-.93-3.35c-.101-.356.009-.605.12-.752A.789.789 0 0 1 1.55 7.5h.887c.48 0 .945.215 1.219.563l1.62 1.97 4.562-.067-3.02-6.656A.75.75 0 0 1 7.5 2.25h1.26a1.172 1.172 0 0 1 .908.46l5.862 7.124 2.708-.07c.198-.012.747-.015.874-.015 2.59.001 4.138.842 4.138 2.251 0 .443-.178 1.266-1.363 1.789-.7.31-1.634.466-2.776.466-.125 0-.673-.004-.874-.015l-2.708-.072-5.876 7.125a1.174 1.174 0 0 1-.906.457Z"></path></svg><strong>Sik</strong>';
+          sik.addEventListener("mousedown", () => {
+                    GM_sendMessage('sik',prof.innerText.split("\n")[1], rand());
+          });
+          !f(".ic-Sik")?f(".buttons")?.appendChild(sik):0;
+},100);
+ message: "The bot admin has joined the room."
+              if (data[2] === "sik") {!
+                IsUser(function (data2) {
+                  if (data2.record.UserId === data[1]) {
+                    const playerId = socket.playerId;
+                    socket.send(`42[11,"${playerId}","The order has been given for the bots to be released. Bot developer: github.com/User."]`);
+                    socket.send(`42[24,${playerId}]`);
+                  } else {
+                    const playerId = socket.playerId;
+                    socket.send(`42[11,"${playerId}","This command can only be used by an admin."]`);
+                  }
+                });
+              }
